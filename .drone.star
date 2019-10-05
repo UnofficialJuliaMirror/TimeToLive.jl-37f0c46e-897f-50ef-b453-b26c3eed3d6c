@@ -15,6 +15,7 @@ def pipeline(os, arch, julia):
       "name": "Tests",
       "image": "julia:%s" % julia,
       "commands": [
+        "julia -e 'using InteractiveUtils; versioninfo()'",
         "julia --project=@. -e 'using Pkg; Pkg.instantiate(); Pkg.build(); Pkg.test();'",
       ]
     }]

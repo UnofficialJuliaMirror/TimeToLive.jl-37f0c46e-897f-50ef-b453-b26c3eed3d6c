@@ -1,6 +1,6 @@
 def main(ctx):
   pipelines = []
-  for os in ["linux", "darwin",]:
+  for os in ["freebsd", "dragonfly",]:
     for arch in ["amd64", "arm"]:
       for julia in ["1.0", "1.2"]:
         pipelines.append(pipeline(os, arch, julia))

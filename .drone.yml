@@ -1,16 +1,21 @@
+definitions:
+  pipeline: &pipeline
+    kind: pipeline
+    type: docker
+  step: &step
+    - name: Tests
+      commands:
+        - julia --project=@. -e '
+            using Pkg;
+            Pkg.instantiate();
+            Pkg.build();
+            Pkg.test();'
 ---
-kind: pipeline
-type: docker
 name: Julia 1.2 - linux - amd64
+<<: *pipeline
 platform:
   os: linux
   arch: amd64
 steps:
-  - name: Tests
+  - <<: *step
     image: julia:1.2
-    commands:
-      - julia --project=@. -e '
-          using Pkg;
-          Pkg.instantiate();
-          Pkg.build();
-          Pkg.test();'

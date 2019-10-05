@@ -1,8 +1,10 @@
 def main(ctx):
-  return [
-    pipeline("linux", "amd64", "1.0"),
-    pipeline("linux", "amd64", "1.2"),
-  ]
+  pipelines = []
+  for os in ["linux", "darwin",]:
+    for arch in ["amd64", "arm"]:
+      for julia in ["1.0", "1.2"]:
+        pipelines.append(pipeline(os, arch, julia))
+  return pipelines
 
 def pipeline(os, arch, julia):
   return {
